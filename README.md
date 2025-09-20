@@ -29,7 +29,6 @@ ReSCNN-VA presents a comprehensive framework that combines facial emotion recogn
 
 | Training Configuration | FP32 | FP16 |
 |------------------------|------|------|
-| **Training Curves** | <img src="train_ECNN\results\training_history.png" width="300"/> | <img src="images/training_curve_fp16.png" width="300"/> |
 | **Confusion Matrix** | <img src="train_ECNN\results\cm_fp32_gpu.png" width="300"/> | <img src="train_ECNN\results\cm_fp16_gpu.png" width="300"/> |
 | **Final Accuracy** | 69.69% | 69.70% |
 | **Model Size** | 27.35MB | 13.67MB |
