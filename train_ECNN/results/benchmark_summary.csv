@@ -1,0 +1,3 @@
+Model,Accuracy (%),Avg Loss,Batch Time (ms),FPS,Model Size
+FP32,69.69,1.1495,24.15,5299.6,27.35 MB
+FP16,69.70,1.1494,31.40,4077.0,13.67 MB
