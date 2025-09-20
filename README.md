@@ -23,13 +23,19 @@ ReSCNN-VA presents a comprehensive framework that combines facial emotion recogn
 - **🏃‍♂️ Real-time Processing**: Low-latency inference suitable for interactive applications
 - **🔋 Power Efficient**: 5W total system power consumption during inference
 
-## 📊 Performance Metrics
+## 📊 Training Results
 
-| Platform | Precision | Accuracy | Model Size | Memory Usage | Power |
-|----------|-----------|----------|------------|--------------|--------|
-| CPU FP32 | FP32 | 69.69% | 27.35MB | ~1GB | ~15W |
-| GPU FP16 | FP16 | 69.70% | 13.67MB | ~512MB | ~25W |
-| RPi3 | FP32 | 69.69% | 27.35MB | ~800MB | ~5W |
+### EmotionCNN Training Performance
+
+| Training Configuration | FP32 | FP16 |
+|------------------------|------|------|
+| **Training Curves** | <img src="images/training_curve_fp32.png" width="300"/> | <img src="images/training_curve_fp16.png" width="300"/> |
+| **Confusion Matrix** | <img src="images/confusion_matrix_fp32.png" width="300"/> | <img src="images/confusion_matrix_fp16.png" width="300"/> |
+| **Final Accuracy** | 69.69% | 69.70% |
+| **Model Size** | 27.35MB | 13.67MB |
+| **Memory Usage** | ~1GB | ~512MB |
+
+*Training performance comparison between FP32 and FP16 precision showing convergence behavior and classification accuracy across emotion categories.*
 
 ## 🏗️ System Architecture
 
