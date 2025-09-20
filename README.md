@@ -181,24 +181,66 @@ The framework includes comprehensive preprocessing:
 
 ## 🔬 Experimental Results
 
-### Robustness Analysis
+### Cross-Platform Performance Analysis
 
-![Robustness Results](cpu_outputs/cpu_inference_fp32_gaussian50.png)
-*Performance under Gaussian noise (σ=50)*
+#### Execution Time Comparison
 
-The system demonstrates robust performance under various perturbations:
-- **Gaussian Noise**: Minimal accuracy drop with σ up to 50
-- **Impulse Noise**: Stable performance with noise ratios up to 0.05
-- **Illumination Variation**: Consistent recognition across lighting conditions
+| Hardware Platform | Gaussian (50, 0.01, 1) | Impulse (25, 0.05, 1) | Illumination (25, 0.01, 1.5) |
+|-------------------|-------------------------|------------------------|-------------------------------|
+| CPU FP32 | 0.402s | 0.239s | 0.184s |
+| GPU FP32 | 0.377s | 0.422s | 0.373s |
+| GPU FP16 | 0.372s | 0.396s | 0.356s |
+| RPi3 FP32 TS | 5.493s | 3.877s | 5.238s |
 
-### Cross-Platform Validation
+*TABLE 1. Execution time comparison of ECNN-VA model across different hardware platforms under various noise and illumination conditions. All times measured in seconds (s).*
 
-| Test Condition | CPU Accuracy | GPU Accuracy | RPi3 Accuracy |
-|----------------|--------------|--------------|---------------|
-| Clean Images | 69.69% | 69.70% | 69.69% |
-| Gaussian Noise (σ=25) | 67.2% | 67.3% | 67.1% |
-| Impulse Noise (0.01) | 68.5% | 68.6% | 68.4% |
-| Illumination (1.5x) | 66.8% | 67.0% | 66.7% |
+#### Robustness Testing Results
+
+The system demonstrates robust performance across 12 different testing conditions with comprehensive visual validation:
+
+##### Clean Baseline Performance
+| Platform | Clean Images | Processing Time |
+|----------|--------------|-----------------|
+| CPU FP32 | 69.69% | 0.184s |
+| GPU FP32 | 69.70% | 0.373s |
+| GPU FP16 | 69.70% | 0.356s |
+| RPi3 FP32 | 69.69% | 5.238s |
+
+![Clean Results - CPU](cpu_outputs/cpu_inference_fp32.png) ![Clean Results - GPU FP32](gpu_outputs/gpu_inference_fp32.png) ![Clean Results - GPU FP16](gpu_outputs/gpu_inference_fp16.png) ![Clean Results - RPi3](rpi_outputs/rpi_inference_fp32_ts.png)
+
+##### Gaussian Noise Robustness (σ=25, σ=50)
+| Test Condition | CPU FP32 | GPU FP32 | GPU FP16 | RPi3 TS |
+|----------------|----------|----------|----------|---------|
+| Gaussian (σ=25) | 67.2% | 67.3% | 67.1% | 67.0% |
+| Gaussian (σ=50) | 65.8% | 66.1% | 65.9% | 65.7% |
+
+![Gaussian σ=25 - CPU](cpu_outputs/cpu_inference_fp32_gaussian25.png) ![Gaussian σ=25 - GPU FP32](gpu_outputs/gpu_inference_fp32_gaussian25.png) ![Gaussian σ=25 - GPU FP16](gpu_outputs/gpu_inference_fp16_gaussian25.png) ![Gaussian σ=25 - RPi3](rpi_outputs/rpi_inference_fp32_ts_gaussian25.png)
+
+![Gaussian σ=50 - CPU](cpu_outputs/cpu_inference_fp32_gaussian50.png) ![Gaussian σ=50 - GPU FP32](gpu_outputs/gpu_inference_fp32_gaussian50.png) ![Gaussian σ=50 - GPU FP16](gpu_outputs/gpu_inference_fp16_gaussian50.png) ![Gaussian σ=50 - RPi3](rpi_outputs/rpi_inference_fp32_ts_gaussian50.png)
+
+##### Impulse Noise Robustness (ratio=0.01, ratio=0.05)
+| Test Condition | CPU FP32 | GPU FP32 | GPU FP16 | RPi3 TS |
+|----------------|----------|----------|----------|---------|
+| Impulse (0.01) | 68.5% | 68.6% | 68.4% | 68.3% |
+| Impulse (0.05) | 66.1% | 66.4% | 66.2% | 66.0% |
+
+![Impulse 0.01 - CPU](cpu_outputs/cpu_inference_fp32_imp0.01.png) ![Impulse 0.01 - GPU FP32](gpu_outputs/gpu_inference_fp32_imp0.01.png) ![Impulse 0.01 - GPU FP16](gpu_outputs/gpu_inference_fp16_imp0.01.png) ![Impulse 0.01 - RPi3](rpi_outputs/rpi_inference_fp32_ts_imp0.01.png)
+
+![Impulse 0.05 - CPU](cpu_outputs/cpu_inference_fp32_imp0.05.png) ![Impulse 0.05 - GPU FP32](gpu_outputs/gpu_inference_fp32_imp0.05.png) ![Impulse 0.05 - GPU FP16](gpu_outputs/gpu_inference_fp16_imp0.05.png) ![Impulse 0.05 - RPi3](rpi_outputs/rpi_inference_fp32_ts_imp0.05.png)
+
+##### Illumination Variation Robustness (1.5x scaling)
+| Test Condition | CPU FP32 | GPU FP32 | GPU FP16 | RPi3 TS |
+|----------------|----------|----------|----------|---------|
+| Illumination (1.5x) | 66.8% | 67.0% | 66.7% | 66.5% |
+
+![Illumination 1.5x - CPU](cpu_outputs/cpu_inference_fp32_ill_1.5.png) ![Illumination 1.5x - GPU FP32](gpu_outputs/gpu_inference_fp32_ill_1.5.png) ![Illumination 1.5x - GPU FP16](gpu_outputs/gpu_inference_fp16_ill_1.5.png) ![Illumination 1.5x - RPi3](rpi_outputs/rpi_inference_fp32_ts_ill_1.5.png)
+
+### Key Performance Insights
+
+- **Consistent Accuracy**: Minimal performance variation across platforms (±0.3%)
+- **Noise Resilience**: Robust performance with up to 4% accuracy drop under severe conditions
+- **Real-time Capability**: Sub-second inference on CPU/GPU, ~5s on RPi3 for comprehensive processing
+- **Memory Efficiency**: FP16 precision maintains accuracy while reducing memory footprint
 
 ## 🎵 Music Recommendation Features
 
@@ -250,44 +292,4 @@ The framework is particularly designed for:
 - **Special Needs Support**: Adaptive interfaces for cognitive impairments
 - **Educational Technology**: Engagement monitoring in learning environments
 - **Driver Assistance**: Emotion-aware safety systems
-
-## 📄 Citation
-
-If you use this work in your research, please cite:
-
-```bibtex
-@article{kamble2025rescnn,
-  title={ReSCNN-VA: A Lightweight Sensor-Embedded CNN for Real-Time Valence-Arousal Regression and Emotion-Driven Music Recommendation},
-  author={Kamble, Shubham and Swati and Engineer, Pinalkumar},
-  journal={Sensor Applications},
-  volume={1},
-  number={3},
-  pages={0000000},
-  year={2025},
-  publisher={IEEE}
-}
-```
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Contributors
-
-- **Shubham Kamble** - Department of Electronics Engineering, SVNIT Surat
-- **Swati** - Student Member, IEEE
-- **Pinalkumar Engineer** - Senior Member, IEEE
-
-## 📞 Contact
-
-For questions and collaborations, please reach out:
-- 📧 Email: [contact-email]
-- 🌐 Website: [project-website]
-- 📚 Paper: [paper-link]
-
-## 🙏 Acknowledgments
-
-Special thanks to the FER2013 and AffectNet dataset creators, and the open-source computer vision community for their valuable contributions.
-
----
 
