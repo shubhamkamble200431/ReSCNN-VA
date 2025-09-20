@@ -201,11 +201,8 @@ Comprehensive confusion matrix analysis across 12 different testing scenarios:
 | Test Condition | CPU FP32 | GPU FP32 | GPU FP16 | RPi3 FP32 TS |
 |----------------|----------|----------|----------|--------------|
 | **Clean Images** | <img src="cpu_outputs/cpu_inference_fp32.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp32.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp16.png" width="200"/> | <img src="rpi_outputs/rpi_inference.png" width="200"/> |
-
-| **Gaussian Noise (σ=50)** | <img src="cpu_outputs/cpu_inference_fp32_gaussian50.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp32_gaussian50.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp16_gaussian50.png" width="200"/> | <img src="rpi_outputs/rpi_inference_fp32_ts_gaussian50.png" width="200"/> |
-
+| **Gaussian Noise (σ=50)** | <img src="cpu_outputs/cpu_inference_fp32_gaussian50.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp32_gaussian50.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp16_gaussian50.png" width="200"/> | <img src="rpi_outputs/rpi_inference_gaussian50.png" width="200"/> |
 | **Impulse Noise (0.05)** | <img src="cpu_outputs/cpu_inference_fp32_imp0.05.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp32_imp0.05.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp16_imp0.05.png" width="200"/> | <img src="rpi_outputs/rpi_inference_imp_0.05.png" width="200"/> |
-
 | **Illumination (1.5x)** | <img src="cpu_outputs/cpu_inference_fp32_ill_1.5.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp32_ill_1.5.png" width="200"/> | <img src="gpu_outputs/gpu_inference_fp16_ill_1.5.png" width="200"/> | <img src="rpi_outputs/rpi_inference_ill_1.5.png" width="200"/> |
 
 *TABLE 2. Confusion matrix visualization across different hardware platforms and testing conditions showing model robustness under various perturbations.*
