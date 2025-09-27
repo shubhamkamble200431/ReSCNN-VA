@@ -38,7 +38,7 @@ ReSCNN-VA presents a comprehensive framework that combines facial emotion recogn
 
 ## 🏗️ System Architecture
 
-![System Architecture](images/system_architecture.png)
+![System Architecture](images/flow2.drawio.png)
 *Comprehensive system architecture from facial input to music recommendation*
 
 The framework consists of three main components:
